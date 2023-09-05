@@ -70,7 +70,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.bartenvendor20/com.example.bartenvendor20.GUI
+                            <mainClass>com.example.bartenvendor25/com.example.bartenvendor25.GUI
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

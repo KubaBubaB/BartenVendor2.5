@@ -1,4 +1,4 @@
-package com.example.bartenvendor20.Ingredients;
+package com.example.bartenvendor25.Ingredients;
 
 public class Other extends Ingredient{
     public Other(String name, String description) {

@@ -1,6 +1,6 @@
-package com.example.bartenvendor20.Ingredients.Softs;
+package com.example.bartenvendor25.Ingredients.Softs;
 
-import com.example.bartenvendor20.Ingredients.Soft;
+import com.example.bartenvendor25.Ingredients.Soft;
 
 import java.util.Vector;
 

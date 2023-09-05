@@ -1,6 +1,6 @@
-package com.example.bartenvendor20.Ingredients.Alcohols;
+package com.example.bartenvendor25.Ingredients.Alcohols;
 
-import com.example.bartenvendor20.Ingredients.Alcohol;
+import com.example.bartenvendor25.Ingredients.Alcohol;
 
 public class Rum extends Alcohol {
     private final String subType;

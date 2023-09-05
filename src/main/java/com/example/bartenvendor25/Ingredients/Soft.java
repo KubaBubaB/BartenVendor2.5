@@ -1,4 +1,4 @@
-package com.example.bartenvendor20.Ingredients;
+package com.example.bartenvendor25.Ingredients;
 
 public abstract class Soft extends Ingredient {
     private final typeOfSoft typeOfSoft;
