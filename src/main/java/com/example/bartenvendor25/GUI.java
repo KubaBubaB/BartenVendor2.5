@@ -15,16 +15,24 @@ import java.io.IOException;
 
 public class GUI extends Application {
     private Scene titleScene;
+    private Stage localStage;
+    private static final int mainMenuNumber = 1;
+    private static final int recipeMenuNumber = 2;
+    private static final int ingrMenuNumber = 3;
 
-    private void ingrContent(){
-
+    @Override
+    public void start(Stage stage) throws IOException {
+        localStage = stage;
+        titleScene = new Scene(generateMainContent());
+        localStage.setScene(titleScene);
+        localStage.setResizable(false);
+        localStage.setTitle("BartenVendor 2.0");
+        localStage.getIcons().add(new Image("icon.png"));
+        localStage.show();
     }
 
-    private void recipeContent(){
-
-    }
-
-    private Parent mainContent(){
+    //returns new HBox on which upon the whole scene must be built
+    private HBox makeBackground(){
         HBox root = new HBox();
         root.setBackground(new Background(
                 new BackgroundFill(
@@ -44,25 +52,60 @@ public class GUI extends Application {
                 )
         ));
         root.setPrefSize(1280,720);
-        Button ingrButt = new Button("Ingredients");
-        ingrButt.setOnAction(e -> ingrContent());
-        ingrButt.setPrefSize(root.getPrefWidth()/2,ingrButt.getHeight());
-        Button recipeButt = new Button("Recipes");
-        recipeButt.setOnAction(e -> recipeContent());
-        recipeButt.setPrefSize(root.getPrefWidth()/2,recipeButt.getHeight());
-        root.getChildren().addAll(ingrButt,recipeButt);
         return root;
     }
 
+    private void loadScene(int scene){
+        // scene 1 = Main menu
+        // scene 2 = Recipe menu
+        // scene 3 = Ingredients menu
+        if(scene == 1){
+            titleScene = new Scene(generateMainContent());
+        }
+        else if (scene == 2){
+            titleScene = new Scene(generateRecipeContent());
+        }
+        else if (scene == 3){
+            titleScene = new Scene(generateIngredientContent());
+        }
+        localStage.setScene(titleScene);
+        localStage.show();
+    }
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        titleScene = new Scene(mainContent());
-        stage.setScene(titleScene);
-        stage.setResizable(false);
-        stage.setTitle("BartenVendor 2.0");
-        stage.getIcons().add(new Image("icon.png"));
-        stage.show();
+    private Parent generateIngredientContent(){
+        HBox root = makeBackground();
+        Button menuButt = new Button("Main Menu");
+        menuButt.setOnAction(e -> loadScene(mainMenuNumber));
+        menuButt.setPrefSize(root.getPrefWidth()/2,menuButt.getHeight());
+        Button recipeButt = new Button("Recipes");
+        recipeButt.setOnAction(e -> loadScene(recipeMenuNumber));
+        recipeButt.setPrefSize(root.getPrefWidth()/2,recipeButt.getHeight());
+        root.getChildren().addAll(menuButt,recipeButt);
+        return root;
+    }
+
+    private Parent generateRecipeContent(){
+        HBox root = makeBackground();
+        Button ingrButt = new Button("Ingredients");
+        ingrButt.setOnAction(e -> loadScene(ingrMenuNumber));
+        ingrButt.setPrefSize(root.getPrefWidth()/2,ingrButt.getHeight());
+        Button menuButt = new Button("Main Menu");
+        menuButt.setOnAction(e -> loadScene(mainMenuNumber));
+        menuButt.setPrefSize(root.getPrefWidth()/2,menuButt.getHeight());
+        root.getChildren().addAll(ingrButt, menuButt);
+        return root;
+    }
+
+    private Parent generateMainContent(){
+        HBox root = makeBackground();
+        Button ingrButt = new Button("Ingredients");
+        ingrButt.setOnAction(e -> loadScene(ingrMenuNumber));
+        ingrButt.setPrefSize(root.getPrefWidth()/2,ingrButt.getHeight());
+        Button recipeButt = new Button("Recipes");
+        recipeButt.setOnAction(e -> loadScene(recipeMenuNumber));
+        recipeButt.setPrefSize(root.getPrefWidth()/2,recipeButt.getHeight());
+        root.getChildren().addAll(ingrButt,recipeButt);
+        return root;
     }
 
     public static void main(String[] args) {
