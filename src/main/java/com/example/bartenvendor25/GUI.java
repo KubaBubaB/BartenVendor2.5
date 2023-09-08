@@ -1,16 +1,18 @@
 package com.example.bartenvendor25;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class GUI extends Application {
@@ -31,7 +33,10 @@ public class GUI extends Application {
         localStage.show();
     }
 
-    //returns new HBox on which upon the whole scene must be built
+    //returns new HBox on which upon the main scene must be built
+    //it is made this way, so adding menu buttons(which are present in every scene)
+    //is way easier :)
+    //if there is a need to add something more to the scene, you need to treat this HBox as a leaf node, not a root
     private HBox makeBackground(){
         HBox root = new HBox();
         root.setBackground(new Background(
@@ -74,38 +79,56 @@ public class GUI extends Application {
 
     private Parent generateIngredientContent(){
         HBox root = makeBackground();
+
         Button menuButt = new Button("Main Menu");
         menuButt.setOnAction(e -> loadScene(mainMenuNumber));
         menuButt.setPrefSize(root.getPrefWidth()/2,menuButt.getHeight());
+
         Button recipeButt = new Button("Recipes");
         recipeButt.setOnAction(e -> loadScene(recipeMenuNumber));
         recipeButt.setPrefSize(root.getPrefWidth()/2,recipeButt.getHeight());
+
         root.getChildren().addAll(menuButt,recipeButt);
         return root;
     }
 
     private Parent generateRecipeContent(){
         HBox root = makeBackground();
+
         Button ingrButt = new Button("Ingredients");
         ingrButt.setOnAction(e -> loadScene(ingrMenuNumber));
         ingrButt.setPrefSize(root.getPrefWidth()/2,ingrButt.getHeight());
+
         Button menuButt = new Button("Main Menu");
         menuButt.setOnAction(e -> loadScene(mainMenuNumber));
         menuButt.setPrefSize(root.getPrefWidth()/2,menuButt.getHeight());
+
         root.getChildren().addAll(ingrButt, menuButt);
         return root;
     }
 
     private Parent generateMainContent(){
         HBox root = makeBackground();
+
         Button ingrButt = new Button("Ingredients");
         ingrButt.setOnAction(e -> loadScene(ingrMenuNumber));
         ingrButt.setPrefSize(root.getPrefWidth()/2,ingrButt.getHeight());
+
         Button recipeButt = new Button("Recipes");
         recipeButt.setOnAction(e -> loadScene(recipeMenuNumber));
         recipeButt.setPrefSize(root.getPrefWidth()/2,recipeButt.getHeight());
+
+        Group toRet = new Group();
+
+        Text messege = new Text("Hi!");
+        messege.setFont(Font.font("Segoe Print", FontPosture.ITALIC,150));
+        messege.setFill(Color.WHITESMOKE);
+        messege.setX(550);
+        messege.setY(400);
+
         root.getChildren().addAll(ingrButt,recipeButt);
-        return root;
+        toRet.getChildren().addAll(root, messege);
+        return toRet;
     }
 
     public static void main(String[] args) {
