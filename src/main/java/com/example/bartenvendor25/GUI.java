@@ -18,9 +18,9 @@ import java.io.IOException;
 public class GUI extends Application {
     private Scene titleScene;
     private Stage localStage;
-    private static final int mainMenuNumber = 1;
-    private static final int recipeMenuNumber = 2;
-    private static final int ingrMenuNumber = 3;
+    private final int mainMenuNumber = 1;
+    private final int recipeMenuNumber = 2;
+    private final int ingrMenuNumber = 3;
 
     @Override
     public void start(Stage stage) throws IOException {

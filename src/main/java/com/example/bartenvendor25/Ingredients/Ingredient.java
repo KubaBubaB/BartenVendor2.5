@@ -1,6 +1,8 @@
 package com.example.bartenvendor25.Ingredients;
 
-public abstract class Ingredient {
+import java.io.Serializable;
+
+public abstract class Ingredient implements Serializable {
     private String name;
     private String description;
     private typeOfIngredient typeOfIngredient;
